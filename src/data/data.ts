@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export interface Category {
   id: string; // Unique identifier for the category
   name: string;
+  icon: string; // Add an icon property to store the icon name or URL
   // Add other category properties as needed
 }
 
@@ -26,6 +27,29 @@ const CATEGORIES_KEY = 'categories';
 const ACTIVITIES_KEY = 'activities';
 const ENTRIES_KEY = 'entries';
 
+// export const addCategory = async (category: Category) => {
+//   try {
+//     const existingCategoriesString = await AsyncStorage.getItem(CATEGORIES_KEY);
+//     const existingCategories: Category[] = existingCategoriesString
+//       ? JSON.parse(existingCategoriesString)
+//       : [];
+
+//     // Generate a unique ID for the new category
+//     category.id = generateUniqueId();
+
+//     const updatedCategories = [...existingCategories, category];
+
+//     await AsyncStorage.setItem(
+//       CATEGORIES_KEY,
+//       JSON.stringify(updatedCategories),
+//     );
+//     return updatedCategories;
+//   } catch (error) {
+//     console.error('Error adding category to AsyncStorage:', error);
+//     throw error;
+//   }
+// };
+
 export const addCategory = async (category: Category) => {
   try {
     const existingCategoriesString = await AsyncStorage.getItem(CATEGORIES_KEY);
@@ -33,10 +57,30 @@ export const addCategory = async (category: Category) => {
       ? JSON.parse(existingCategoriesString)
       : [];
 
-    // Generate a unique ID for the new category
-    category.id = generateUniqueId();
+    // Check if a category with the same name already exists
+    const duplicatedCat = existingCategories.filter(
+      (existingCategory, index) => {
+        const duplicate =
+          existingCategory.id.toLowerCase() === category.id?.toLowerCase();
 
-    const updatedCategories = [...existingCategories, category];
+        if (duplicate) {
+          console.warn('Category already exists and will be updated');
+          existingCategories[index] = category;
+        }
+
+        return duplicate;
+      },
+    );
+
+    const updatedCategories = [...existingCategories];
+
+    if (duplicatedCat.length) {
+      console.warn('Category already exists and will be updated');
+    } else {
+      // Generate a unique ID for the new category
+      category.id = generateUniqueId();
+      updatedCategories.push(category);
+    }
 
     await AsyncStorage.setItem(
       CATEGORIES_KEY,
@@ -133,7 +177,7 @@ export const getCategoryActivities = async (
 export const getEntries = async (): Promise<Entry[]> => {
   try {
     const entriesString = await AsyncStorage.getItem(ENTRIES_KEY);
-    console.log('all entries', entriesString)
+    console.log('all entries', entriesString);
     return entriesString ? JSON.parse(entriesString) : [];
   } catch (error) {
     console.error('Error retrieving entries from AsyncStorage:', error);

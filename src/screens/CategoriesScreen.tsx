@@ -7,6 +7,7 @@ import {
   Category,
 } from '../data/data'; // Import data functions
 import Button from '../components/Button';
+import CategoryCard from '../components/CategoryCard';
 
 const CategoriesScreen = ({navigation}) => {
   const [newCategory, setNewCategory] = useState('');
@@ -76,9 +77,17 @@ const CategoriesScreen = ({navigation}) => {
       />
       <Button title="Add Category" onPress={handleAddCategory} />
       {categories?.map(category => (
-        <View key={category.id} style={styles.category}>
-          <Text>{category.name}</Text>
-        </View>
+         <CategoryCard
+         key={category.id}
+         name={category.name}
+         icon={category.icon}
+         onPress={() =>
+           navigation.navigate('ManageCategory', {
+             categoryId: category.id,
+             categoryName: category.name,
+           })
+         }
+       />
       ))}
       <Button title="Delete Categories" onPress={handleDeleteAllCategories} />
     </View>
