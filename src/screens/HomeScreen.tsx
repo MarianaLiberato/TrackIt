@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import { Text, StyleSheet} from 'react-native';
 import CategoryCard from '../components/CategoryCard'; // Import the CategoryCard component
 import {Category, getCategories} from '../data/data'; // Import data functions
+import Screen from '../components/Screen';
+import Button from '../components/Button';
 
 const HomeScreen = ({navigation}) => {
   const [categories, setCategories] = useState<Category[]>();
@@ -15,12 +17,13 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <Screen>
       <Text style={styles.title}>Categories</Text>
       {categories?.map(category => (
         <CategoryCard
           key={category.id}
           name={category.name}
+          icon={category.icon}
           onPress={() =>
             navigation.navigate('Activities', {
               categoryId: category.id,
@@ -33,7 +36,7 @@ const HomeScreen = ({navigation}) => {
         title="Manage Categories"
         onPress={() => navigation.navigate('Categories')}
       />
-    </View>
+    </Screen>
   );
 };
 

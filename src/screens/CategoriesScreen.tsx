@@ -8,6 +8,7 @@ import {
 } from '../data/data'; // Import data functions
 import Button from '../components/Button';
 import CategoryCard from '../components/CategoryCard';
+import Screen from '../components/Screen';
 
 const CategoriesScreen = ({navigation}) => {
   const [newCategory, setNewCategory] = useState('');
@@ -67,7 +68,7 @@ const CategoriesScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <Screen>
       <Text style={styles.title}>Manage Categories</Text>
       <TextInput
         style={styles.input}
@@ -90,7 +91,7 @@ const CategoriesScreen = ({navigation}) => {
        />
       ))}
       <Button title="Delete Categories" onPress={handleDeleteAllCategories} />
-    </View>
+    </Screen>
   );
 };
 

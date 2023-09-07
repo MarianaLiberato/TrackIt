@@ -3,12 +3,14 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import { addActivity, getCategoryActivities, Activity} from '../data/data'; // Import data functions
 import {useNavigation} from '@react-navigation/native';
+import Screen from '../components/Screen';
+import TText from '../components/TText';
+import Button from '../components/Button';
 
 const ActivitiesScreen = ({route}) => {
   const {categoryId, categoryName} = route.params;
@@ -34,9 +36,9 @@ const ActivitiesScreen = ({route}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Manage Activities</Text>
-      <Text style={styles.subtitle}>Category: {categoryName}</Text>
+    <Screen>
+      <TText style={styles.title} text='Manage Activities' />
+      <TText style={styles.subtitle} text={`Category: ${categoryName}`} />
       <TextInput
         style={styles.input}
         placeholder="New Activity Name"
@@ -57,24 +59,21 @@ const ActivitiesScreen = ({route}) => {
           <Text>{activity.name}</Text>
         </TouchableOpacity>
       ))}
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'black'
   },
   subtitle: {
     fontSize: 18,
     marginBottom: 10,
+    color: 'black'
   },
   input: {
     width: '80%',
