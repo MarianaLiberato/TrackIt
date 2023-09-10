@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput, Button, Switch, StyleSheet} from 'react-native';
 import {Entry, addEntry, getActivityEntries, getEntries} from '../data/data';
+import Screen from '../components/Screen';
+import TText from '../components/TText';
+import Theme from '../constants/Theme';
 
 const EntriesScreen = ({route}) => {
   const {activityName, activityId} = route.params;
@@ -11,6 +14,7 @@ const EntriesScreen = ({route}) => {
   useEffect(() => {
     async function fetchData() {
       const initialEntries = await getActivityEntries(activityId);
+      console.log(initialEntries)
       setEntries(initialEntries);
     }
     fetchData();
@@ -23,7 +27,7 @@ const EntriesScreen = ({route}) => {
         // Add the category using data.ts
         await addEntry({
           id: `${Date.now()}`,
-          value: !!newEntryValue,
+          value: newEntryValue.toString(),
           activityId,
           timestamp: Date.now()
         });
@@ -39,8 +43,8 @@ const EntriesScreen = ({route}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{activityName}</Text>
+    <Screen>
+      <TText style={styles.title} text={activityName} />
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -49,23 +53,23 @@ const EntriesScreen = ({route}) => {
           onChangeText={text => setNewEntryValue(text)}
         />
         <View style={styles.switchContainer}>
-          <Text>Numeric</Text>
+        <TText text='Numeric' />
           <Switch
             value={isBooleanType}
             onValueChange={value => setIsBooleanType(value)}
           />
-          <Text>Boolean</Text>
+          <TText text='Boolean' />
         </View>
       </View>
       <Button title="Add Entry" onPress={handleAddEntry} />
       {entries?.map(entry => (
         <View key={entry.id} style={styles.entry}>
-          <Text>Value: {entry.value}</Text>
-          <Text>Type: {entry.isBoolean ? 'Boolean' : 'Numeric'}</Text>
-          <Text>Timestamp: {entry.timestamp}</Text>
+          <TText text={entry.value.toString()} />
+          <TText text={entry.isBoolean ? 'Boolean' : 'Numeric'} />
+          <TText text={new Date(entry.timestamp).toDateString()} />
         </View>
       ))}
-    </View>
+    </Screen>
   );
 };
 
@@ -90,6 +94,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     padding: 10,
+    color: Theme.COLORS.WHITE
   },
   switchContainer: {
     flexDirection: 'row',
@@ -101,6 +106,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 10,
     marginBottom: 10,
+    color: Theme.COLORS.WHITE
   },
 });
 

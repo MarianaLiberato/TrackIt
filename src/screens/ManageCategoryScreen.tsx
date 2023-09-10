@@ -3,6 +3,10 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import IconSelection from '../components/IconSelection'; // Import the icon selection component
 import { Category, addCategory, getCategories } from '../data/data'; // Import data functions
 import Icon from 'react-native-vector-icons/Ionicons'; // Import the icon library
+import Screen from '../components/Screen';
+import Theme from '../constants/Theme';
+import GradientButton from '../components/GradientButton';
+import TText from '../components/TText';
 
 const DEFAULT_ICON = 'book'
 
@@ -34,8 +38,8 @@ const ManageCategoriesScreen = ({ route, navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Category Name:</Text>
+    <Screen>
+      <TText style={styles.label} text='Category Name:' />
       <TextInput
         style={styles.input}
         placeholder="Enter category name"
@@ -46,27 +50,25 @@ const ManageCategoriesScreen = ({ route, navigation }) => {
       {/* Render the IconSelection component */}
       <IconSelection selectedIcon={selectedIcon} onSelectIcon={setSelectedIcon} />
 
-      <Button title="Update Category" onPress={handleUpdateCategory} />
-    </View>
+      <GradientButton title="Update Category" onPress={handleUpdateCategory} />
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
   label: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: Theme.padding.L,
+    color: Theme.COLORS.LABEL
   },
   input: {
-    fontSize: 16,
+    fontSize: 18,
     borderWidth: 1,
     borderColor: 'lightgray',
     padding: 10,
-    marginBottom: 15,
+    marginBottom: Theme.padding.L,
+    color: Theme.COLORS.LABEL
   },
   categoryItem: {
     flexDirection: 'row',
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
   categoryName: {
     marginLeft: 10,
     fontSize: 18,
-  },
+  }
 });
 
 export default ManageCategoriesScreen;

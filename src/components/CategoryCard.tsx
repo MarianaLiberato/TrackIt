@@ -1,33 +1,46 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome6';
+import TText from './TText';
+import Theme from '../constants/Theme';
 
-interface CategoryCardProps {
-  name: string;
-  onPress: () => void;
-  icon?: string;
+interface CategoryCarGroupdProps {
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ name, onPress, icon }) => {
+const CategoryCard: React.FC<CategoryCarGroupdProps> = ({ name, onPress, icon }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.card}>
-      {icon && <Icon name={icon} />}
-      <Text style={styles.text}>{name}</Text>
+      <View style={styles.cardLeft}>
+        {icon && <Icon style={styles.icon} name={icon} />}
+        <TText style={styles.text} text={name} />
+      </View>
+      <Icon style={styles.icon} name='chevron-right' />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
-    margin: 8,
-    alignItems: 'center',
+    backgroundColor: Theme.COLORS.PRIMARY,
+    paddingVertical: Theme.padding.S,
+    paddingHorizontal: Theme.padding.M,
+    borderRadius: Theme.padding.S,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  cardLeft: {
+    flexDirection: 'row'
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
   },
+  icon: {
+    fontSize: Theme.padding.M,
+    marginEnd: Theme.padding.S,
+    color: Theme.COLORS.LABEL,
+    alignSelf: 'center'
+  }
 });
 
 export default CategoryCard;
