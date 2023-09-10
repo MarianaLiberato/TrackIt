@@ -9,6 +9,9 @@ import {
 import Button from '../components/Button';
 import CategoryCard from '../components/CategoryCard';
 import Screen from '../components/Screen';
+import CategoryCardGroup from '../components/CategoryCardGroup';
+import TText from '../components/TText';
+import {exportDataAsBackup, importDataFromBackup} from '../data/exportData';
 
 const CategoriesScreen = ({navigation}) => {
   const [newCategory, setNewCategory] = useState('');
@@ -67,9 +70,32 @@ const CategoriesScreen = ({navigation}) => {
     );
   };
 
+  const handleExportBackup = async () => {
+    try {
+      const filePath = await exportDataAsBackup();
+      console.log('Backup exported to:', filePath);
+    } catch (error) {
+      console.error('Export failed:', error);
+    }
+  };
+
+  const handleImportBackup = async () => {
+    const filePath = ' /data/user/0/com.trackit/files/backup.json';
+
+    try {
+      const success = await importDataFromBackup(filePath);
+      if (success) {
+        console.log('Data imported successfully');
+        // Reload or refresh the app to reflect the changes
+      }
+    } catch (error) {
+      console.error('Import failed:', error);
+    }
+  };
+
   return (
     <Screen>
-      <Text style={styles.title}>Manage Categories</Text>
+      <TText style={styles.title} text="Manage Categories" />
       <TextInput
         style={styles.input}
         placeholder="New Category Name"
@@ -77,20 +103,24 @@ const CategoriesScreen = ({navigation}) => {
         onChangeText={text => setNewCategory(text)}
       />
       <Button title="Add Category" onPress={handleAddCategory} />
-      {categories?.map(category => (
-         <CategoryCard
-         key={category.id}
-         name={category.name}
-         icon={category.icon}
-         onPress={() =>
-           navigation.navigate('ManageCategory', {
-             categoryId: category.id,
-             categoryName: category.name,
-           })
-         }
-       />
-      ))}
+      <CategoryCardGroup>
+        {categories?.map(category => (
+          <CategoryCard
+            key={category.id}
+            name={category.name}
+            icon={category.icon}
+            onPress={() =>
+              navigation.navigate('ManageCategory', {
+                categoryId: category.id,
+                categoryName: category.name,
+              })
+            }
+          />
+        ))}
+      </CategoryCardGroup>
       <Button title="Delete Categories" onPress={handleDeleteAllCategories} />
+      <Button title="Export Data" onPress={handleExportBackup} />
+      <Button title="Import Data" onPress={handleImportBackup} />
     </Screen>
   );
 };

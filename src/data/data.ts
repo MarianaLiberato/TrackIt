@@ -23,9 +23,9 @@ export interface Entry {
 }
 
 // Define keys for AsyncStorage
-const CATEGORIES_KEY = 'categories';
-const ACTIVITIES_KEY = 'activities';
-const ENTRIES_KEY = 'entries';
+export const CATEGORIES_KEY = 'categories';
+export const ACTIVITIES_KEY = 'activities';
+export const ENTRIES_KEY = 'entries';
 
 // export const addCategory = async (category: Category) => {
 //   try {
