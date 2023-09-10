@@ -158,6 +158,21 @@ export const getActivities = async (): Promise<Activity[]> => {
   }
 };
 
+export const getActivity = async (activityId: string): Promise<Activity> => {
+  try {
+    const activities = await getActivities();
+    const activity = activities.find(activity => activity.id === activityId);
+    if(activity){
+      return activity
+    } else {
+      throw new Error(`Activity ${activityId} does not exist in database`)
+    }
+  } catch (error) {
+    console.error('Error retrieving activities from AsyncStorage:', error);
+    throw error;
+  }
+};
+
 export const getCategoryActivities = async (
   categoryId: string,
 ): Promise<Activity[]> => {
