@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import TText from './TText';
-import Theme from '../constants/Theme';
+import {theme} from '../constants/Theme';
 
 interface SquareCardProps {
 }
@@ -18,10 +18,10 @@ const SquareCard: React.FC<SquareCardProps> = ({ name, onPress, icon }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: Theme.COLORS.PRIMARY,
-    paddingVertical: Theme.padding.M,
-    paddingHorizontal: Theme.padding.M,
-    borderRadius: Theme.padding.S,
+    backgroundColor: theme.COLORS.PRIMARY,
+    paddingVertical: theme.padding.M,
+    paddingHorizontal: theme.padding.M,
+    borderRadius: theme.padding.S,
     width: '30%',
     alignItems: 'center',
     flexGrow: 1
@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   icon: {
-    fontSize: Theme.padding.L,
-    color: Theme.COLORS.ICON,
+    fontSize: theme.padding.L,
+    color: theme.COLORS.ICON,
     alignSelf: 'center',
-    marginBottom: Theme.padding.M
+    marginBottom: theme.padding.M
   }
 });
 

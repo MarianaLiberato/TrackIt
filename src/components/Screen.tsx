@@ -1,32 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import CategoryCard from '../components/CategoryCard'; // Import the CategoryCard component
-import { Category, getCategories } from '../data/data'; // Import data functions
-import Theme from '../constants/Theme';
+import {Category, getCategories} from '../data/data'; // Import data functions
+import {theme} from '../constants/Theme';
 import LinearGradient from 'react-native-linear-gradient';
+import {ScrollView} from 'react-native-gesture-handler';
 
-const Screen = ({ children }) => {
+const Screen = ({children}) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={[Theme.COLORS.GRADIENT_START, Theme.COLORS.GRADIENT_END]}
-        style={StyleSheet.absoluteFillObject}
-      >
-        <View style={styles.container}>
-          {children}
-        </View>
+        colors={[theme.COLORS.GRADIENT_START, theme.COLORS.GRADIENT_END]}
+        style={StyleSheet.absoluteFillObject}>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.otherContainer}>{children}</View>
+        </ScrollView>
       </LinearGradient>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
+  scrollView: {
+    marginHorizontal: theme.padding.M,
+  },
+  otherContainer: {
+    flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: Theme.padding.M,
-    // backgroundColor: Theme.COLORS.BACKGROUND
   },
 });
 

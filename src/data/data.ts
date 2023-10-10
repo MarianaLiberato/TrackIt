@@ -19,6 +19,7 @@ export interface Entry {
   value: number | boolean;
   activityId: string; // Reference to the activity it belongs to
   timestamp: number;
+  isBoolean: boolean;
   // Add other entry properties as needed
 }
 
@@ -205,7 +206,6 @@ export const getActivityEntries = async (
 ): Promise<Entry[]> => {
   try {
     const entries = await getEntries();
-    console.log('activityId', activityId);
     return entries.filter(ent => ent.activityId === activityId);
   } catch (error) {
     console.error('Error retrieving entries from AsyncStorage:', error);

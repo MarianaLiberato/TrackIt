@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import TText from './TText';
-import Theme from '../constants/Theme';
+import {theme} from '../constants/Theme';
 
 interface CategoryCarGroupdProps {
 }
@@ -21,10 +21,10 @@ const CategoryCard: React.FC<CategoryCarGroupdProps> = ({ name, onPress, icon })
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: Theme.COLORS.PRIMARY,
-    paddingVertical: Theme.padding.S,
-    paddingHorizontal: Theme.padding.M,
-    borderRadius: Theme.padding.S,
+    backgroundColor: theme.COLORS.PRIMARY,
+    paddingVertical: theme.padding.S,
+    paddingHorizontal: theme.padding.M,
+    borderRadius: theme.padding.S,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between'
@@ -36,9 +36,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   icon: {
-    fontSize: Theme.padding.M,
-    marginEnd: Theme.padding.S,
-    color: Theme.COLORS.LABEL,
+    fontSize: theme.padding.M,
+    marginEnd: theme.padding.S,
+    color: theme.COLORS.LABEL,
     alignSelf: 'center'
   }
 });

@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import {
-  TextInput,
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import { TextInput, StyleSheet, View, Text } from 'react-native';
 import { addActivity, getCategoryActivities, Activity } from '../data/data'; // Import data functions
 import { useNavigation } from '@react-navigation/native';
 import Screen from '../components/Screen';
 import TText from '../components/TText';
 import Button from '../components/Button';
-import Theme from '../constants/Theme';
+import { theme } from '../constants/Theme';
 import CategoryCard from '../components/CategoryCard';
 import { Picker } from '@react-native-picker/picker';
 import CategoryCardGroup from '../components/CategoryCardGroup';
+import GradientButton from '../components/GradientButton';
 
 const ActivitiesScreen = ({ route }) => {
   const { categoryId, categoryName } = route.params;
@@ -48,32 +44,38 @@ const ActivitiesScreen = ({ route }) => {
 
   return (
     <Screen>
-      <TText style={styles.title} text='Manage Activities' />
-      <TText style={styles.subtitle} text={`Category: ${categoryName}`} />
-      <TextInput
-        style={styles.input}
-        placeholder="New Activity Name"
-        value={newActivity}
-        onChangeText={text => setNewActivity(text)}
-      />
-      <TText text='Select Value Type:' />
-      <Picker
-        selectedValue={valueType}
-        onValueChange={(itemValue) => setValueType(itemValue)}
-        style={styles.picker}
-      >
-        <Picker.Item label="Boolean" value="boolean" />
-        <Picker.Item label="Number" value="number" />
-        <Picker.Item label="Text/String" value="text" />
-      </Picker>
-      <Button title="Add Activity" onPress={handleAddActivity} />
+      <TText style={styles.title} text={categoryName} />
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="New Activity Name"
+          value={newActivity}
+          onChangeText={text => setNewActivity(text)}
+          placeholderTextColor={theme.COLORS.WHITE}
+        />
+        <TText style={styles.label} text="Select Value Type:" />
+        <Picker
+          selectedValue={valueType}
+          onValueChange={itemValue => setValueType(itemValue)}
+          dropdownIconColor={theme.COLORS.WHITE}
+          style={styles.picker}
+        >
+          <Picker.Item label="Boolean" value="boolean" />
+          <Picker.Item label="Number" value="number" />
+          <Picker.Item label="Text/String" value="text" />
+        </Picker>
+        <GradientButton title="Add Activity" onPress={handleAddActivity} />
+      </View>
       <CategoryCardGroup>
         {activities?.map(activity => (
-          <CategoryCard name={activity.name} onPress={() =>
-            navigation.navigate('Entries', {
-              activityName: activity.name,
-              activityId: activity.id,
-            })}
+          <CategoryCard
+            name={activity.name}
+            onPress={() =>
+              navigation.navigate('Entries', {
+                activityName: activity.name,
+                activityId: activity.id,
+              })
+            }
             key={activity.id}
           />
         ))}
@@ -83,6 +85,11 @@ const ActivitiesScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: theme.padding.M
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -93,19 +100,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   input: {
-    width: '80%',
+    width: '100%',
     borderWidth: 1,
     borderColor: '#ccc',
+    borderRadius: theme.padding.XS,
     padding: 10,
-    marginBottom: 10,
-    color: Theme.COLORS.WHITE
+    marginBottom: theme.padding.M
   },
   picker: {
-    width: '80%',
+    width: '100%',
     borderWidth: 1,
     borderColor: '#ccc',
-    marginBottom: 10,
-    color: Theme.COLORS.WHITE
+    color: theme.COLORS.WHITE,
   },
   activity: {
     borderWidth: 1,
@@ -113,6 +119,10 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
   },
+  label: {
+    width: '100%',
+    marginBottom: -5
+  }
 });
 
 export default ActivitiesScreen;

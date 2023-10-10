@@ -1,6 +1,13 @@
-export default {
+export const theme = {
   // #6e75c4, #ff99c8, #fcf6bd, #d0f4de, #a9def9
   // #515AB8
+  COLORS2: {
+    BLUE: '#96BDC6',
+    GREEN: '#81968F',
+    BEJE: '#CFB9A5',
+    SKIN: '#E8CCBF',
+    LILA: '#E9D6EC',
+  },
   COLORS: {
     DEFAULT: '#2c3581',
     PRIMARY: '#1B3C6D',
@@ -42,6 +49,75 @@ export default {
     XL: 60,
   },
   fontSize: {
-    button: 16
-  }
+    button: 16,
+  },
+};
+
+export const ChartTheme = () => {
+  // Strokes
+  const strokeDasharray = '10, 5';
+  const strokeLinecap = 'round';
+  const strokeLinejoin = 'round';
+
+  // Put it all together...
+  const cTheme = {
+    axis: {
+      style: {
+        axis: {
+          stroke: theme.COLORS.BORDER_COLOR,
+          strokeWidth: 2,
+        },
+        axisLabel: {
+          fill: 'white',
+          // stroke: "red",
+          // strokeWidth: 3,
+          color: 'white',
+          textAnchor: "middle",
+          padding: 20
+        },
+        grid: {
+          fill: 'none',
+          stroke: theme.COLORS.PRIMARY
+        },
+        tickLabels: {
+          angle: 0,
+          fill: theme.COLORS.BORDER_COLOR,
+          padding: theme.padding.XS,
+          fontSize: 10,
+          textAnchor: 'middle'
+        },
+      },
+    },
+    area: {
+      style: {
+        data: {
+          fill: theme.COLORS.ACTIVE
+        }
+      },
+    },
+    line: {
+      style: {
+        data: {
+          fill: 'transparent',
+          opacity: 1,
+          stroke: 'red',
+          strokeWidth: 2,
+        },
+      },
+    },
+    scatter: {
+      style: {
+        data: {
+          fill: theme.COLORS.WHITE,
+        },
+        labels: {
+          fill: 'white',
+          padding: 5,
+          fontSize: 10
+        }
+      }
+    }
+  };
+
+  return cTheme
 };

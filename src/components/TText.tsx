@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import {View, Text, StyleSheet, StyleProp, TextStyle} from 'react-native';
-import Theme from '../constants/Theme';
+import {theme} from '../constants/Theme';
 
 interface TextProps {
   style: TextStyle;
@@ -16,7 +16,7 @@ const TText: React.FC<TextProps> = ({style, text}) => {
 const styles = StyleSheet.create({
   text: {
     fontFamily: 'OpenSans-Regular',
-    color: Theme.COLORS.WHITE,
+    color: theme.COLORS.WHITE,
   },
 });
 

@@ -12,6 +12,8 @@ import Screen from '../components/Screen';
 import CategoryCardGroup from '../components/CategoryCardGroup';
 import TText from '../components/TText';
 import {exportDataAsBackup, importDataFromBackup} from '../data/exportData';
+import GradientButton from '../components/GradientButton';
+import {theme} from '../constants/Theme';
 
 const CategoriesScreen = ({navigation}) => {
   const [newCategory, setNewCategory] = useState('');
@@ -96,13 +98,16 @@ const CategoriesScreen = ({navigation}) => {
   return (
     <Screen>
       <TText style={styles.title} text="Manage Categories" />
-      <TextInput
-        style={styles.input}
-        placeholder="New Category Name"
-        value={newCategory}
-        onChangeText={text => setNewCategory(text)}
-      />
-      <Button title="Add Category" onPress={handleAddCategory} />
+      <View style={styles.container}>
+        <TextInput
+          placeholderTextColor={theme.COLORS.WHITE}
+          style={styles.input}
+          placeholder="New Category Name"
+          value={newCategory}
+          onChangeText={text => setNewCategory(text)}
+        />
+        <GradientButton title="Add Category" onPress={handleAddCategory} />
+      </View>
       <CategoryCardGroup>
         {categories?.map(category => (
           <CategoryCard
@@ -118,18 +123,22 @@ const CategoriesScreen = ({navigation}) => {
           />
         ))}
       </CategoryCardGroup>
-      <Button title="Delete Categories" onPress={handleDeleteAllCategories} />
-      <Button title="Export Data" onPress={handleExportBackup} />
-      <Button title="Import Data" onPress={handleImportBackup} />
+      <GradientButton
+        title="Delete Categories"
+        onPress={handleDeleteAllCategories}
+      />
+      <GradientButton title="Export Data" onPress={handleExportBackup} />
+      <GradientButton title="Import Data" onPress={handleImportBackup} />
     </Screen>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: theme.padding.L,
   },
   title: {
     fontSize: 24,
@@ -137,11 +146,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    width: '80%',
+    width: '100%',
     borderWidth: 1,
     borderColor: '#ccc',
+    borderRadius: theme.padding.XS,
     padding: 10,
-    marginBottom: 10,
   },
   category: {
     borderWidth: 1,

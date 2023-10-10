@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import TText from './TText';
-import Theme from '../constants/Theme';
+import {theme} from '../constants/Theme';
 
 interface CategoryCardProps {
   name: string;
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   group: {
     width: '100%',
     display: 'flex',
-    gap: Theme.padding.S,
+    gap: theme.padding.S,
   },
   square: {
     flexDirection: 'row',

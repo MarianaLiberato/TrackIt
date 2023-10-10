@@ -4,7 +4,7 @@ import IconSelection from '../components/IconSelection'; // Import the icon sele
 import { Category, addCategory, getCategories } from '../data/data'; // Import data functions
 import Icon from 'react-native-vector-icons/Ionicons'; // Import the icon library
 import Screen from '../components/Screen';
-import Theme from '../constants/Theme';
+import {theme} from '../constants/Theme';
 import GradientButton from '../components/GradientButton';
 import TText from '../components/TText';
 
@@ -59,16 +59,16 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: Theme.padding.L,
-    color: Theme.COLORS.LABEL
+    marginBottom: theme.padding.L,
+    color: theme.COLORS.LABEL
   },
   input: {
     fontSize: 18,
     borderWidth: 1,
     borderColor: 'lightgray',
     padding: 10,
-    marginBottom: Theme.padding.L,
-    color: Theme.COLORS.LABEL
+    marginBottom: theme.padding.L,
+    color: theme.COLORS.LABEL
   },
   categoryItem: {
     flexDirection: 'row',

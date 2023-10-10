@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
-import Theme from '../constants/Theme';
+import {theme} from '../constants/Theme';
 
 const availableIcons = [
   'person-walking',
@@ -32,7 +32,7 @@ const IconSelection: React.FC<IconSelectionProps> = ({ selectedIcon, onSelectIco
             <Icon
               name={item}
               size={35}
-              color={selectedIcon === item ? Theme.COLORS.ICON : Theme.COLORS.LABEL}
+              color={selectedIcon === item ? theme.COLORS.ICON : theme.COLORS.LABEL}
             />
           </TouchableOpacity>
         )}
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: '100%',
-    rowGap: Theme.padding.S,
+    rowGap: theme.padding.S,
     justifyContent: 'space-around',
-    columnGap: Theme.padding.S,
+    columnGap: theme.padding.S,
   },
   iconItem: {
     width: '100%',
-    padding: Theme.padding.M,
+    padding: theme.padding.M,
     minWidth: '20%'
   },
 });
