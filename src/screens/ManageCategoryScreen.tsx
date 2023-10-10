@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import IconSelection from '../components/IconSelection'; // Import the icon selection component
 import { Category, addCategory, getCategories } from '../data/data'; // Import data functions
 import Icon from 'react-native-vector-icons/Ionicons'; // Import the icon library
@@ -7,6 +7,7 @@ import Screen from '../components/Screen';
 import {theme} from '../constants/Theme';
 import GradientButton from '../components/GradientButton';
 import TText from '../components/TText';
+import UserInput from '../components/UserInput';
 
 const DEFAULT_ICON = 'book'
 
@@ -39,9 +40,8 @@ const ManageCategoriesScreen = ({ route, navigation }) => {
 
   return (
     <Screen>
-      <TText style={styles.label} text='Category Name:' />
-      <TextInput
-        style={styles.input}
+      <TText type='title' text='Category Name:' />
+      <UserInput
         placeholder="Enter category name"
         value={categoryName}
         onChangeText={(text) => setCategoryName(text)}
@@ -56,20 +56,6 @@ const ManageCategoriesScreen = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  label: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: theme.padding.L,
-    color: theme.COLORS.LABEL
-  },
-  input: {
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: 'lightgray',
-    padding: 10,
-    marginBottom: theme.padding.L,
-    color: theme.COLORS.LABEL
-  },
   categoryItem: {
     flexDirection: 'row',
     alignItems: 'center',

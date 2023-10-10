@@ -10,6 +10,7 @@ import CategoryCard from '../components/CategoryCard';
 import { Picker } from '@react-native-picker/picker';
 import CategoryCardGroup from '../components/CategoryCardGroup';
 import GradientButton from '../components/GradientButton';
+import UserInput from '../components/UserInput';
 
 const ActivitiesScreen = ({ route }) => {
   const { categoryId, categoryName } = route.params;
@@ -44,14 +45,12 @@ const ActivitiesScreen = ({ route }) => {
 
   return (
     <Screen>
-      <TText style={styles.title} text={categoryName} />
+      <TText type='title' text={categoryName} />
       <View style={styles.container}>
-        <TextInput
-          style={styles.input}
+        <UserInput
           placeholder="New Activity Name"
           value={newActivity}
           onChangeText={text => setNewActivity(text)}
-          placeholderTextColor={theme.COLORS.WHITE}
         />
         <TText style={styles.label} text="Select Value Type:" />
         <Picker
@@ -90,23 +89,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: theme.padding.M
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  subtitle: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  input: {
-    width: '100%',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: theme.padding.XS,
-    padding: 10,
-    marginBottom: theme.padding.M
-  },
   picker: {
     width: '100%',
     borderWidth: 1,
@@ -121,6 +103,7 @@ const styles = StyleSheet.create({
   },
   label: {
     width: '100%',
+    marginTop: theme.padding.M,
     marginBottom: -5
   }
 });

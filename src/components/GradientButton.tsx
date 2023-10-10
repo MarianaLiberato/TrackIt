@@ -25,7 +25,7 @@ class GradientButton extends React.Component<GradientButtonProps> {
     return (
       <TouchableOpacity style={style} onPress={onPress}>
         <LinearGradient
-          colors={[theme.COLORS.BUTTON_GRADIENT_START, theme.COLORS.BUTTON_GRADIENT_END]}
+          colors={[theme.COLORS2.GREEN, theme.COLORS2.GREEN]}
           style={styles.appButtonContainer}
           start={{x: 0, y: 0}} end={{x: 1, y: 0}}
         >
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   appButtonText: {
     fontSize: theme.fontSize.button,
-    color: theme.COLORS.WHITE,
+    color: theme.COLORS2.DARK_BLUE,
     alignSelf: 'center',
   }
 });

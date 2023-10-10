@@ -21,7 +21,7 @@ const CategoryCard: React.FC<CategoryCarGroupdProps> = ({ name, onPress, icon })
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: theme.COLORS.PRIMARY,
+    backgroundColor: theme.COLORS2.ORANGE,
     paddingVertical: theme.padding.S,
     paddingHorizontal: theme.padding.M,
     borderRadius: theme.padding.S,
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+    color: theme.COLORS2.DARK_BLUE
   },
   icon: {
     fontSize: theme.padding.M,

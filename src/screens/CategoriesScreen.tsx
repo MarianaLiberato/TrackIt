@@ -14,6 +14,7 @@ import TText from '../components/TText';
 import {exportDataAsBackup, importDataFromBackup} from '../data/exportData';
 import GradientButton from '../components/GradientButton';
 import {theme} from '../constants/Theme';
+import UserInput from '../components/UserInput';
 
 const CategoriesScreen = ({navigation}) => {
   const [newCategory, setNewCategory] = useState('');
@@ -97,11 +98,9 @@ const CategoriesScreen = ({navigation}) => {
 
   return (
     <Screen>
-      <TText style={styles.title} text="Manage Categories" />
+      <TText type='title' text="Manage Categories" />
       <View style={styles.container}>
-        <TextInput
-          placeholderTextColor={theme.COLORS.WHITE}
-          style={styles.input}
+        <UserInput
           placeholder="New Category Name"
           value={newCategory}
           onChangeText={text => setNewCategory(text)}
@@ -139,18 +138,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: theme.padding.L,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: theme.padding.XS,
-    padding: 10,
   },
   category: {
     borderWidth: 1,

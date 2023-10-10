@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Button, Switch, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Switch, StyleSheet } from 'react-native';
 import {
   Entry,
   addEntry,
@@ -18,6 +18,8 @@ import {
 } from './HomeScreen';
 import GradientButton from '../components/GradientButton';
 import DateTimePickerModal from '@react-native-community/datetimepicker'; // Import the date and time picker library
+import UserInput from '../components/UserInput';
+import Button from '../components/Button';
 
 const EntriesScreen = ({ route }) => {
   const { activityName, activityId } = route.params;
@@ -112,7 +114,7 @@ const EntriesScreen = ({ route }) => {
   return (
     <Screen>
       <View style={styles.container}>
-        <TText style={styles.title} text={activityName} />
+        <TText type='title' text={activityName} />
         <View style={styles.inputContainer}>
           {activityType === 'boolean' ? (
             <View style={styles.switchContainer}>
@@ -123,22 +125,20 @@ const EntriesScreen = ({ route }) => {
               />
             </View>
           ) : (
-            <TextInput
-              style={styles.input}
+            <UserInput
               placeholder="New Entry Value"
               value={newEntryValue}
               onChangeText={text => setNewEntryValue(text)}
-              placeholderTextColor={theme.COLORS.WHITE}
             />
           )}
           <View style={styles.dateContainer}>
-            <TextInput
+            <UserInput
               style={styles.input}
               editable={false}
               value={selectedDate.toLocaleDateString()}
             />
             <Button
-              title="Change"
+              title="🕔"
               onPress={showDatePicker}
             />
           </View>
@@ -148,7 +148,7 @@ const EntriesScreen = ({ route }) => {
       <View style={styles.container}>
         {entries?.length ? renderChart() : <TText text="no entries" />}
       </View>
-      <View style={styles.container}>
+      <View style={styles.entriesContainer}>
         {sortDates(entries).map(entry => (
           <View key={entry.id} style={styles.entry}>
             <TText style={styles.entryValue} text={entry.value.toString()} />
@@ -176,30 +176,19 @@ const EntriesScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: theme.padding.S,
     width: '100%',
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
   inputContainer: {
-    flexDirection: 'column',
-    marginBottom: 10,
+    marginBottom: theme.padding.S,
+    gap: theme.padding.S,
     width: '100%',
   },
   input: {
-    width: '100%',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: theme.padding.XS,
-    padding: 10,
-    color: theme.COLORS.WHITE,
     flexShrink: 1,
+    marginRight: theme.padding.S
   },
   switchContainer: {
     flexDirection: 'row',
@@ -208,14 +197,18 @@ const styles = StyleSheet.create({
   },
   entry: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    marginBottom: 10,
-    color: theme.COLORS.WHITE,
+    borderColor: theme.COLORS2.PALE_BLUE,
+    borderRadius: theme.padding.S,
+    padding: theme.padding.S,
     width: '100%'
   },
   entryValue: {
-    fontSize: 16
+    fontSize: theme.fontSize.button,
+    fontWeight: 'bold'
+  },
+  entriesContainer: {
+    gap: theme.padding.S,
+    width: '100%',
   },
   dateContainer: {
     flexDirection: 'row',

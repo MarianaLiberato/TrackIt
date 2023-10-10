@@ -2,11 +2,16 @@ export const theme = {
   // #6e75c4, #ff99c8, #fcf6bd, #d0f4de, #a9def9
   // #515AB8
   COLORS2: {
-    BLUE: '#96BDC6',
-    GREEN: '#81968F',
-    BEJE: '#CFB9A5',
-    SKIN: '#E8CCBF',
-    LILA: '#E9D6EC',
+    MID_BLUE: '#183684',
+    DARK_BLUE: '#07131f',
+    DARK_PURPLE: '#31006d',
+    GREEN: '#00c691',
+    LIGHT_GREEN: '#85FFDE',
+    DARK_GREEN: '#00664B',
+    PALE_BLUE: '#7EB5DD',
+    ORANGE: '#d27c65',
+    BROWN: '#734231',
+    BLUE: '#2d6bbd',
   },
   COLORS: {
     DEFAULT: '#2c3581',
@@ -50,6 +55,7 @@ export const theme = {
   },
   fontSize: {
     button: 16,
+    title: 24
   },
 };
 

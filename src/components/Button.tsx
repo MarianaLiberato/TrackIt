@@ -7,20 +7,12 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 interface ButtonProps {
   title?: string;
   onPress?: any;
-  color?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'error'
-    | 'success'
-    | 'warning';
   fullWidth?: boolean;
 }
 
 class Button extends React.Component<ButtonProps> {
   render() {
-    const {title, onPress, fullWidth, style, color, ...props} = this.props;
+    const {title, onPress, fullWidth, style, ...props} = this.props;
 
     const buttonStyle = [
         {...styles.appButtonContainer},

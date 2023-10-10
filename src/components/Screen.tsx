@@ -17,7 +17,7 @@ const Screen = ({children}) => {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={[theme.COLORS.GRADIENT_START, theme.COLORS.GRADIENT_END]}
+        colors={[theme.COLORS2.DARK_BLUE, theme.COLORS2.DARK_BLUE]}
         style={StyleSheet.absoluteFillObject}>
         <ScrollView style={styles.scrollView}>
           <View style={styles.otherContainer}>{children}</View>
@@ -30,7 +30,7 @@ const Screen = ({children}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
+    paddingTop: StatusBar.currentHeight + theme.padding.M,
   },
   scrollView: {
     marginHorizontal: theme.padding.M,

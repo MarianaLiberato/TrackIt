@@ -7,6 +7,7 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import ActivitiesScreen from '../screens/ActivitiesScreen';
 import EntriesScreen from '../screens/EntriesScreen';
 import ManageCategoriesScreen from '../screens/ManageCategoryScreen';
+import { theme } from '../constants/Theme';
 
 const Stack = createStackNavigator();
 
@@ -15,9 +16,9 @@ let a: Theme = {
   colors: {
     primary: 'yellow',
     background: 'pink',
-    card: '#132555',
+    card: theme.COLORS2.DARK_BLUE,
     text: '#DADADA',
-    border: 'red',
+    border: theme.COLORS2.PALE_BLUE,
     notification: 'orange',
   }
 }

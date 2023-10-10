@@ -18,20 +18,21 @@ const SquareCard: React.FC<SquareCardProps> = ({ name, onPress, icon }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: theme.COLORS.PRIMARY,
+    backgroundColor: theme.COLORS2.MID_BLUE,
     paddingVertical: theme.padding.M,
     paddingHorizontal: theme.padding.M,
     borderRadius: theme.padding.S,
     width: '30%',
     alignItems: 'center',
-    flexGrow: 1
+    flexGrow: 1,
   },
   text: {
-    fontSize: 14,
+    fontSize: theme.fontSize.button,
+    color: theme.COLORS2.PALE_BLUE,
   },
   icon: {
     fontSize: theme.padding.L,
-    color: theme.COLORS.ICON,
+    color: theme.COLORS2.PALE_BLUE,
     alignSelf: 'center',
     marginBottom: theme.padding.M
   }
